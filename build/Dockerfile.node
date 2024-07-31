@@ -24,7 +24,7 @@ RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list &&\
                                     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src
-RUN git clone --recursive --branch v${VER} https://github.com/ton-blockchain/ton
+RUN git clone --recursive --branch v${VER} ${REPO}
 RUN mkdir -p /usr/bin/ton
 
 WORKDIR /usr/bin/ton
