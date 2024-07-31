@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   ton-node:
@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile.node
       args:
         VER: ${NODE_VERSION}
+        REPO: ${REPO}
     image: ton-node:${NODE_VERSION}
     restart: always
     ports:
@@ -58,5 +59,5 @@ networks:
   ton-network:
     driver: bridge
     ipam:
-     config:
-       - subnet: 172.18.0.0/24
+      config:
+        - subnet: 172.18.0.0/24
