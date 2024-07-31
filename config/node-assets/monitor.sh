@@ -4,7 +4,7 @@ while true; do
     clear
 
     # Command to get the stats
-    output=$(/usr/bin/ton/validator-engine-console/validator-engine-console -k /var/ton-work/db/client -p /var/ton-work/db/server.pub -a 127.0.0.1:43678 -v 1 -c getstats)
+    output=$(/usr/bin/ton/validator-engine-console/validator-engine-console -k /var/ton-work/db/client -p /var/ton-work/db/server.pub -a 127.0.0.1:$CONSOLE_PORT -v 1 -c getstats)
 
     # Extract unixtime and masterchainblocktime
     unixtime=$(echo "$output" | grep -oP 'unixtime\s+\K\d+')
