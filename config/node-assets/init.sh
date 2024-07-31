@@ -63,4 +63,4 @@ fi
 
 echo -e "\e[1;32m[+]\e[0m Running validator-engine"
 
-exec /usr/bin/ton/validator-engine/validator-engine -c /var/ton-work/db/config.json -C /var/ton-work/db/ton-global.config --db /var/ton-work/db --state-ttl 86400 --archive-ttl 86400
+exec /usr/bin/ton/validator-engine/validator-engine --threads $(expr $(nproc) - 1) -c /var/ton-work/db/config.json -C /var/ton-work/db/ton-global.config --db /var/ton-work/db --state-ttl 86400 --archive-ttl 86400
