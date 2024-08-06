@@ -12,7 +12,7 @@ on:
         default: https://github.com/ton-blockchain/ton
 
 env:
-  REPO: ${{ github.event.inputs.repo }}
+  REPO: ${{ github.event.inputs.repo || 'https://github.com/ton-blockchain/ton' }}
 
 jobs:
   setup-build-publish:
