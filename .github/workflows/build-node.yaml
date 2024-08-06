@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "main"
+      - "mod"
   workflow_dispatch:
     inputs:
       repo:
