@@ -36,7 +36,7 @@ jobs:
         run: |
           # Set up docker to authenticate
           # via gcloud command-line tool.
-          gcloud auth configure-docker $REGISTRY_HOSTNAME
+          gcloud auth configure-docker asia-east1-docker.pkg.dev
 
       # Build the Docker image
       - name: "Build"
