@@ -1,0 +1,47 @@
+name: Beaver Auth CI/CD pipeline
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+    inputs:
+      repo:
+        required: true
+        type: string
+        default: https://github.com/ton-blockchain/ton
+
+env:
+  REPO: ${{ github.event.inputs.repo }}
+
+jobs:
+  setup-build-publish:
+    name: "Setup, Build, and Publish"
+    runs-on: "self-hosted"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      # Setup gcloud CLI
+      - name: "auth"
+        uses: "google-github-actions/auth@v2.1.0"
+        with:
+          credentials_json: "${{secrets.GCR_KEY}}"
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2.1.0"
+
+      # Configure docker to use the gcloud command-line tool as a credential helper
+      - name: "Use gcloud CLI"
+        run: |
+          # Set up docker to authenticate
+          # via gcloud command-line tool.
+          gcloud auth configure-docker $REGISTRY_HOSTNAME
+
+      # Build the Docker image
+      - name: "Build"
+        run: |
+          docker compose build
+      # Push the Docker image to Google Container Registry
+      - name: "Publish"
+        run: |
+          docker compose push

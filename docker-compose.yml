@@ -8,7 +8,7 @@ services:
       args:
         VER: ${NODE_VERSION}
         REPO: ${REPO}
-    image: ton-node:${NODE_VERSION}
+    image: asia-east1-docker.pkg.dev/tonfura/tonnode/ton-node:${NODE_VERSION}
     restart: always
     ports:
       - ${NODE_CONSOLE_PORT}:${NODE_CONSOLE_PORT}
@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile.api
       args:
         VER: ${API_VERSION}
-    image: ton-api
+    image: asia-east1-docker.pkg.dev/tonfura/tonnode/ton-api
     restart: always
     ports:
       - 8081:8081
